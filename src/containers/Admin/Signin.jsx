@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { userRegister } from '../../actions/signin';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class Signin extends Component {
   constructor(props) {
@@ -9,18 +12,50 @@ class Signin extends Component {
       password: '',
     }
   }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  submitForm = e => {
+    const { userRegister, history, location: { state } } = this.props;
+    e.preventDefault()
+    fetch('http://localhost:3000/api/auth/signin', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state)
+    }).then(res => {
+      if (res.status === 401) {
+        alert('erreur authentification')
+      } else if (res.status === 200) {
+        return res.json()
+      }
+    }
+    ).then(user => {
+      userRegister(user)
+      history.push(state.format.pathname)
+    })
+  }
+
   render() {
     return (
       <div className="Signin">
-        <Form>
+        <h1>Bienvenue sur l'espace administrateur</h1>
+        <h2>Veuillez vous identifier :</h2>
+        <Form onSubmit={this.submitForm}>
           <FormGroup>
             <Label for="exampleEmail" hidden>Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+            <Input type="text" name="login" id="exampleEmail" placeholder="Login" onChange={this.handleChange} />
           </FormGroup>
           {' '}
           <FormGroup>
             <Label for="examplePassword" hidden>Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+            <Input type="password" name="password" id="examplePassword" placeholder="Password" onChange={this.handleChange} />
           </FormGroup>
           {' '}
           <Button>Submit</Button>
@@ -30,4 +65,8 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+const mdtp = dispatch => bindActionCreators({
+  userRegister
+}, dispatch)
+
+export default connect(null, mdtp)(Signin);
