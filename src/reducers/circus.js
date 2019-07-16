@@ -15,8 +15,6 @@ const circus = (state = initialState, action) => {
     }
     case 'FETCH_SUCCESS_CIRCUS': {
       const circus = action.circus;
-      console.log(circus);
-
       return {
         ...state,
         loading: false,
@@ -30,9 +28,6 @@ const circus = (state = initialState, action) => {
         loading: false,
         error: action.err,
       };
-    }
-    case 'ADD_CIRCUS': {
-
     }
     default:
       return state;

@@ -16,9 +16,7 @@ class Adminpage extends Component {
   }
 
   render() {
-    const { addornot, addCircus } = this.props;
-    console.log(addornot);
-    
+    const { addornot, addCircus } = this.props;    
     return (
       <div className="Adminpage">
         <p>Je suis sur la page admin</p>
