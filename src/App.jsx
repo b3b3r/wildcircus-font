@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Circus from './containers/User/Circus';
 import YourCircus from './containers/User/YourCircus';
 import Footer from './components/Footer';
+import Signin from './containers/Admin/Signin';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/Nos-cirques" component={Circus} />
         <Route path="/Votre-cirque" component={YourCircus} />
+        <Route path="/Signin" component={Signin} />
       </Switch>
       <Footer />
     </div>
