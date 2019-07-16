@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { userRegister } from '../../actions/signin';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { urlApi } from '../../constant';
 
 class Signin extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Signin extends Component {
   submitForm = e => {
     const { userRegister, history, location: { state } } = this.props;
     e.preventDefault()
-    fetch('http://localhost:3000/api/auth/signin', {
+    fetch(`${urlApi}/auth/signin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -38,11 +39,12 @@ class Signin extends Component {
     }
     ).then(user => {
       userRegister(user)
-      history.push(state.format.pathname)
+      history.push(state.from.pathname);  
     })
   }
 
   render() {
+    const { login, password } = this.state;
     return (
       <div className="Signin">
         <h1>Bienvenue sur l'espace administrateur</h1>
@@ -50,12 +52,12 @@ class Signin extends Component {
         <Form onSubmit={this.submitForm}>
           <FormGroup>
             <Label for="exampleEmail" hidden>Email</Label>
-            <Input type="text" name="login" id="exampleEmail" placeholder="Login" onChange={this.handleChange} />
+            <Input type="text" name="login" id="exampleEmail" placeholder="Login" onChange={this.handleChange} value={login} />
           </FormGroup>
           {' '}
           <FormGroup>
             <Label for="examplePassword" hidden>Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="Password" onChange={this.handleChange} />
+            <Input type="password" name="password" id="examplePassword" placeholder="Password" onChange={this.handleChange} value={password} />
           </FormGroup>
           {' '}
           <Button>Submit</Button>

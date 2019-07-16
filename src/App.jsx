@@ -18,8 +18,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/Nos-cirques" component={Circus} />
         <Route path="/Votre-cirque" component={YourCircus} />
-        <Route path="/Signin" component={Signin} />
-        <PrivateRoute exact path="/Admin" component={AdminPage} />
+        <Route path="/signin" component={Signin} />
+        <Route exact path="/Admin" component={AdminPage} />
       </Switch>
       <Footer />
     </div>
