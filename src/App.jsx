@@ -19,7 +19,7 @@ function App() {
         <Route path="/Nos-cirques" component={Circus} />
         <Route path="/Votre-cirque" component={YourCircus} />
         <Route path="/signin" component={Signin} />
-        <Route exact path="/Admin" component={AdminPage} />
+        <PrivateRoute exact path="/Admin" component={AdminPage} />
       </Switch>
       <Footer />
     </div>

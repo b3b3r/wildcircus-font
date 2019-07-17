@@ -21,7 +21,7 @@ class Signin extends Component {
   }
 
   submitForm = e => {
-    const { userRegister, history, location: { state } } = this.props;
+    const { userRegister, history, location: { state } } = this.props;    
     e.preventDefault()
     fetch(`${urlApi}/auth/signin`, {
       method: 'POST',
@@ -33,13 +33,16 @@ class Signin extends Component {
     }).then(res => {
       if (res.status === 401) {
         alert('erreur authentification')
-      } else if (res.status === 200) {
+      } else if (res.status === 200) {        
         return res.json()
       }
     }
     ).then(user => {
+      console.log(user);
+      
       userRegister(user)
-      history.push(state.from.pathname);  
+      history.push(state.from.pathname);
+       
     })
   }
 

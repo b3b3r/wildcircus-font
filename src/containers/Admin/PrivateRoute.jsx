@@ -20,7 +20,7 @@ const PrivateRoute = ({ component: Component, token, ...propsRoute }) => (
 );
 
 const mstp = state => ({
-  token: state.token
+  token: state.user.token
 })
 
 export default connect(mstp)(PrivateRoute);
