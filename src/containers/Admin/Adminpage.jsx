@@ -21,7 +21,7 @@ class Adminpage extends Component {
     return (
       <div className="Adminpage">
         <p>Je suis sur la page admin</p>
-        <ul>{circus.map(circus => <li key={circus.id}>{`${circus.name} ${circus.place} ${circus.price}€`} <Delete index={circus.id} /></li>)}</ul>
+        <ul>{circus.map((circus, index) => <li key={circus.id}>{`${circus.name} ${circus.place} ${circus.price}€`} <Delete id={circus.id} /></li>)}</ul>
         <Addcircus display={addornot === true ? 'Addcircus' : 'Addcircus-none'} />
         <Button color="primary" onClick={() => addCircus()} >Ajouter</Button>{' '}
 

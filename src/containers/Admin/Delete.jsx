@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import { asyncFetchDeleteCircus } from '../../actions/deleteCircus';
 import { connect } from 'react-redux';
 
-function Delete({ asyncFetchDeleteCircus, index }) {
+function Delete({ asyncFetchDeleteCircus, id }) {
   return (
     <div className="Delete">
-      <Button color="primary" onClick={() => asyncFetchDeleteCircus(index)} >Supprimer</Button>{' '}
+      <Button color="primary" onClick={() => asyncFetchDeleteCircus(id)} >Supprimer</Button>{' '}
     </div>
   );
 }

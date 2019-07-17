@@ -15,21 +15,13 @@ export const fetchErrorDeleteCircus = err => ({
 });
 
 export const asyncFetchDeleteCircus = (
-  name, price, place,
+  id
 ) => (dispatch) => {
   dispatch(startFetchDeleteCircus());
-  const newCircus = {
-    name,
-    price,
-    place,
-  }
   const config = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newCircus),
+    method: 'DELETE',
   };
-  fetch(`${urlApi}/circus`, config)
-    .then(res => res.json())
+  fetch(`${urlApi}/circus/${id}`, config)
     .then(() => {
       dispatch(fetchSuccessDeleteCircus());      
     })
