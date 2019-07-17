@@ -13,14 +13,17 @@ class Modifycircus extends Component {
       name: '',
       price: 0,
       place: '',
+      url: '',
     }
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    const { asyncFetchModifyCircus, id, oldName, oldPrice, oldPlace } = this.props
-    const { name, price, place } = this.state
-    asyncFetchModifyCircus(name === '' ? oldName : name, price === 0 ? oldPrice : price, place === '' ? oldPlace : place, id)
+    const { asyncFetchModifyCircus, id, oldName, oldPrice, oldPlace, oldUrl } = this.props;
+    const { name, price, place, url } = this.state;
+    console.log(url);
+    
+    asyncFetchModifyCircus(name === '' ? oldName : name, price === 0 ? oldPrice : price, place === '' ? oldPlace : place, url === '' ? oldUrl : url, id)
   }
 
   handleChange = e => {
@@ -30,8 +33,8 @@ class Modifycircus extends Component {
   }
 
   render() {
-    const { display, oldName, oldPrice, oldPlace, index } = this.props
-    const { name, price, place } = this.state
+    const { display, oldName, oldPrice, oldPlace, oldUrl, index } = this.props
+    const { name, price, place, url } = this.state
     return (
       <div className={display}>
         <Form onSubmit={this.handleSubmit} >
@@ -48,6 +51,11 @@ class Modifycircus extends Component {
           <FormGroup>
             <Label for="place" hidden>Lieu</Label>
             <Input type="text" name="place" id="place" placeholder="place" onChange={this.handleChange} value={place === '' ? oldPlace : place} />
+          </FormGroup>
+          {' '}
+          <FormGroup>
+            <Label for="url" hidden>URL</Label>
+            <Input type="text" name="url" id="url" placeholder="url" onChange={this.handleChange} value={url === '' ? oldUrl : url} />
           </FormGroup>
           {' '}
           <Button>Submit</Button>

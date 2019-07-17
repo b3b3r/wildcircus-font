@@ -28,6 +28,7 @@ class Adminpage extends Component {
             {`${circus.name}
         ${circus.place}
         ${circus.price}€`}
+            <img src={circus.url} alt={circus.name} />
             <Delete
               id={circus.id}
             />
@@ -42,6 +43,7 @@ class Adminpage extends Component {
               oldName={circus.name}
               oldPrice={circus.price}
               oldPlace={circus.place}
+              oldUrl={circus.url}
               id={circus.id}
               index={index}
               display={modifyornot ? 'Modifycircus' : 'Modifycircus-none'} />

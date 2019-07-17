@@ -20,13 +20,14 @@ export const fetchErrorModifyCircus = err => ({
 });
 
 export const asyncFetchModifyCircus = (
-  name, price, place, id
+  name, price, place, url, id
 ) => (dispatch) => {
   dispatch(startFetchModifyCircus());
   const newCircus = {
     name,
     price,
     place,
+    url,
   }
   console.log(newCircus);
   
