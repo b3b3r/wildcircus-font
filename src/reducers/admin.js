@@ -1,5 +1,6 @@
 const initialState = {
   addcircus: false,
+  modifycircus: false,
   loading: false,
   error: '',
 };
@@ -10,6 +11,12 @@ const admin = (state = initialState, action) => {
       return {
         ...state,
         addcircus: true,
+      }
+    }
+    case 'MODIFY_CIRCUS': {
+      return {
+        ...state,
+        modifycircus: true,
       }
     }
     case 'START_FETCH_DELETE_CIRCUS': {
@@ -27,6 +34,27 @@ const admin = (state = initialState, action) => {
       };
     }
     case 'FETCH_ERROR_DELETE_CIRCUS': {
+      return {
+        ...state,
+        loading: false,
+        error: action.err,
+      };
+    }
+    case 'START_FETCH_MODIFY_CIRCUS': {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case 'FETCH_SUCCESS_MODIFY_CIRCUS': {
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        modifycircus: false,
+      };
+    }
+    case 'FETCH_ERROR_MODIFY_CIRCUS': {
       return {
         ...state,
         loading: false,
