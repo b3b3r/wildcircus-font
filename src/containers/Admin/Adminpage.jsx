@@ -6,6 +6,7 @@ import { addCircus } from '../../actions/addCircus';
 import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import Addcircus from './Addcircus';
+import Delete from './Delete';
 
 class Adminpage extends Component {
 
@@ -16,11 +17,12 @@ class Adminpage extends Component {
   }
 
   render() {
-    const { addornot, addCircus } = this.props;    
+    const { circus, addornot, addCircus } = this.props;
     return (
       <div className="Adminpage">
         <p>Je suis sur la page admin</p>
-        <Addcircus display={addornot===true ? 'Addcircus' : 'Addcircus-none'} />
+        <ul>{circus.map(circus => <li key={circus.id}>{`${circus.name} ${circus.place} ${circus.price}€`} <Delete index={circus.id} /></li>)}</ul>
+        <Addcircus display={addornot === true ? 'Addcircus' : 'Addcircus-none'} />
         <Button color="primary" onClick={() => addCircus()} >Ajouter</Button>{' '}
 
       </div>
@@ -29,7 +31,8 @@ class Adminpage extends Component {
 }
 
 const mstp = state => ({
-  addornot: state.admin.addcircus
+  addornot: state.admin.addcircus,
+  circus: state.circus.circus
 });
 
 const mdtp = dispatch => bindActionCreators({

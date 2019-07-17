@@ -33,13 +33,12 @@ export const asyncFetchAddCircus = (
     body: JSON.stringify(newCircus),
   };
   fetch(`${urlApi}/circus`, config)
-    .then(res => res.json())
     .then(() => {
       dispatch(fetchSuccessAddCircus());
-      console.log('coucou');
-      
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
+
       dispatch(fetchErrorAddCircus('Une erreur s\'est produite lors de l\'enregistrement du cirque.'));
     })
     .then(() => { dispatch(asyncFetchCircus()); });

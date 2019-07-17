@@ -12,8 +12,7 @@ export const fetchErrorTheme = err => ({
   err,
 });
 
-export const asyncFetchTheme = () => {
-  return (dispatch) => {
+export const asyncFetchTheme = () => (dispatch) => {
     dispatch(startFetchTheme());
     fetch(`${urlApi}/theme`)    
       .then(res => res.json())
@@ -24,4 +23,3 @@ export const asyncFetchTheme = () => {
         dispatch(fetchErrorTheme('Erreur lors du chargement des themes'));
       });
   }
-}

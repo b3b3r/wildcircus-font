@@ -1,21 +1,23 @@
 const initialState = {
   loading: false,
-  list: [],
+  themes: [],
   error: '',
 };
 
 const themes = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'START_FETCH_THEMES': {
       return {
         ...state,
         loading: true,
       }
     }
-    case 'FETCH_SUCCESS_THEMES': {
+    case 'FETCH_SUCCESS_THEME': {
+      const themes = action.themes;      
       return {
+        ...state,
         loading: false,
-        list: [...action.themes],
+        themes,
         error: '',
       }
     }
