@@ -9,6 +9,7 @@ import { Button } from 'reactstrap';
 import Addcircus from './Addcircus';
 import Delete from './Delete';
 import ModifyCircus from './ModifyCircus';
+import './Adminpage.scss';
 
 class Adminpage extends Component {
 
@@ -21,35 +22,43 @@ class Adminpage extends Component {
   render() {
     const { circus, addornot, modifyornot, addCircus, modifyCircus } = this.props;
     return (
-      <div className="Adminpage">
+      <div className="Adminpage container">
         <p>Je suis sur la page admin</p>
-        <ul>{circus.map((circus, index) =>
-          <li key={circus.id}>
-            {`${circus.name}
+          <ul>{circus.map((circus, index) =>
+            <li key={circus.id}>
+              <div className="container">
+                <div className="row">
+                  {`${circus.name}
         ${circus.place}
         ${circus.price}€`}
-            <img src={circus.url} alt={circus.name} />
-            <Delete
-              id={circus.id}
-            />
-            <Button
-              color="primary"
-              onClick={() => modifyCircus()}
+                </div>
+                <div className="row">
+                  <img className="vignette" src={circus.url} alt={circus.name} />
+                </div>
+                <div className="row">
+                  <Delete
+                    id={circus.id}
+                  />
+                  <Button
+                    color="primary"
+                    onClick={() => modifyCircus()}
 
-            >
-              Modifier
+                  >
+                    Modifier
             </Button>{' '}
-            <ModifyCircus
-              oldName={circus.name}
-              oldPrice={circus.price}
-              oldPlace={circus.place}
-              oldUrl={circus.url}
-              id={circus.id}
-              index={index}
-              display={modifyornot ? 'Modifycircus' : 'Modifycircus-none'} />
-          </li>
-        )}
-        </ul>
+                  <ModifyCircus
+                    oldName={circus.name}
+                    oldPrice={circus.price}
+                    oldPlace={circus.place}
+                    oldUrl={circus.url}
+                    id={circus.id}
+                    index={index}
+                    display={modifyornot ? 'Modifycircus' : 'Modifycircus-none'} />
+                </div>
+              </div>
+            </li>
+          )}
+          </ul>
         <Button color="primary" onClick={() => addCircus()} >Ajouter</Button>{' '}
         <Addcircus display={addornot ? 'Addcircus' : 'Addcircus-none'} />
       </div>
