@@ -37,9 +37,7 @@ class Signin extends Component {
         return res.json()
       }
     }
-    ).then(user => {
-      console.log(user);
-      
+    ).then(user => {      
       userRegister(user)
       history.push(state.from.pathname);
        

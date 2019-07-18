@@ -13,12 +13,13 @@ export const fetchErrorCircus = err => ({
 });
 
 export const addCircus = () => ({
-  type:'ADD_CIRCUS',
+  type: 'ADD_CIRCUS',
 })
 
-export const asyncFetchCircus = () => (dispatch) => {
+export const asyncFetchCircus = theme => (dispatch) => {
   dispatch(startFetchCircus());
-  fetch(`${urlApi}/theme/circus`)
+  if(theme){
+    fetch(`${urlApi}/theme/circus/${theme}`)
     .then(res => res.json())
     .then((circus) => {
       dispatch(fetchSuccessCircus(circus));
@@ -26,4 +27,15 @@ export const asyncFetchCircus = () => (dispatch) => {
     .catch(() => {
       dispatch(fetchErrorCircus('Erreur lors du chargement des cirques'));
     });
+  } else {
+    fetch(`${urlApi}/theme/circus`)
+    .then(res => res.json())
+    .then((circus) => {
+      dispatch(fetchSuccessCircus(circus));
+    })
+    .catch(() => {
+      dispatch(fetchErrorCircus('Erreur lors du chargement des cirques'));
+    });
+  }
+  
 };

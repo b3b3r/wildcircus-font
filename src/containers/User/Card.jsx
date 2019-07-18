@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText, CardImg } from 'reactstrap';
 
-function CardCircus({ name, price, place, url }) {
+function CardCircus({ name, price, place, url, theme }) {
   return (
     <div className="Card">
       <div>
@@ -11,6 +11,7 @@ function CardCircus({ name, price, place, url }) {
           <CardBody>
             <CardText>{`${price}€`}</CardText>
             <CardText>{place}</CardText>
+            {theme.map((theme, index) => <li key={index}>{theme}</li>)}
           </CardBody>
         </Card>
       </div>

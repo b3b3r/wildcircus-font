@@ -11,19 +11,30 @@ class Circus extends Component {
     asyncFetchCircus();
     asyncFetchTheme()
   }
+
+  handleClick = e => {
+    const { asyncFetchCircus } = this.props;
+    asyncFetchCircus(e.target.id);
+  }
+
   render() {
-    const { circus } = this.props;
+    const { circus, themes } = this.props;
     return (
       <div className="Circus">
         <h1>Nos cirques</h1>
-        {circus.map(circus => <CardCircus name={circus.name} price={circus.price} place={circus.place} url={circus.url} />)}
+        <label>Sélectionner un thème: </label>
+        <select>
+          {themes.map((theme, index) => <option key={index} id={theme.name}  onClick={this.handleClick}>{theme.name}</option>)}
+        </select>
+        {circus.map(circus => <CardCircus name={circus.name} price={circus.price} place={circus.place} url={circus.url} theme={circus.theme} />)}
       </div>
     );
   }
 }
 
 const mstp = state => ({
-  circus: state.circus.circus
+  circus: state.circus.circus,
+  themes: state.themes.themes,
 });
 
 
