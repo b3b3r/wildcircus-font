@@ -1,5 +1,9 @@
 const initialState = {
+<<<<<<< HEAD
   token: '',
+=======
+  token: ''
+>>>>>>> dev
 }
 
 const user = (state = initialState, action) => {
