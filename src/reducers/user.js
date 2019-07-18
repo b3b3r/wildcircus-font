@@ -4,7 +4,7 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case 'USER_REGISTER': {              
+    case 'USER_REGISTER': {            
       return {
         ...action.user
       }
