@@ -37,6 +37,9 @@ class BarNav extends Component {
               <NavItem>
                 <NavLink href="/Nos-cirques">Nos cirques</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/signin">Admin</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
