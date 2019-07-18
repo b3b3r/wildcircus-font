@@ -18,7 +18,7 @@ export const addCircus = () => ({
 
 export const asyncFetchCircus = () => (dispatch) => {
   dispatch(startFetchCircus());
-  fetch(`${urlApi}/circus`)
+  fetch(`${urlApi}/theme/circus`)
     .then(res => res.json())
     .then((circus) => {
       dispatch(fetchSuccessCircus(circus));
