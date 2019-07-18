@@ -1,7 +1,5 @@
-const tokenStorage = localStorage.getItem('token');
-
 const initialState = {
-  token: tokenStorage,
+  token: '',
 }
 
 const user = (state = initialState, action) => {
